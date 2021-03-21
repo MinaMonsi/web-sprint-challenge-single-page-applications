@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Home from './components/Home'
 import Food from './components/Food'
 import Drinks from './components/Drinks'
-import OrderForm from './components/OrderForm'
+import PizzaForm from './components/PizzaForm'
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
     <Route exact path='/' component={Home}/>
     <Route path='/food' component={Food}/> 
     <Route path='/drinks' component={Drinks}/>
-    <Route path='/form' component={OrderForm}/>
+    <Route path='/form' component={PizzaForm}/>
     </Switch>
     </div>
     </BrowserRouter>
