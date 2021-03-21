@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Home from './components/Home'
 import Food from './components/Food'
 import Drinks from './components/Drinks'
+import OrderForm from './components/OrderForm'
 
 const App = () => {
   return (
@@ -12,11 +13,13 @@ const App = () => {
     <Link to='/' style={{padding: 20}}>Home</Link>
     <Link to='/food' style={{padding: 20}}>Food</Link> 
     <Link to='/drinks' style={{padding: 20}}>Drinks</Link>
+    <Link to='/form' style={{padding: 20}}>Order Form</Link>
 
     <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/food' component={Food}/> 
     <Route path='/drinks' component={Drinks}/>
+    <Route path='/form' component={OrderForm}/>
     </Switch>
     </div>
     </BrowserRouter>
