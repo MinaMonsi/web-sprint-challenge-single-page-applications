@@ -13,13 +13,11 @@ const App = () => {
     <Link to='/' style={{padding: 20}}>Home</Link>
     <Link to='/food' style={{padding: 20}}>Food</Link> 
     <Link to='/drinks' style={{padding: 20}}>Drinks</Link>
-    <Link to='/form' style={{padding: 20}}>Order Form</Link>
 
     <Switch>
     <Route exact path='/' component={Home}/>
     <Route path='/food' component={Food}/> 
     <Route path='/drinks' component={Drinks}/>
-    <Route path='/form' component={PizzaForm}/>
     </Switch>
     </div>
     </BrowserRouter>

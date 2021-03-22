@@ -1,14 +1,22 @@
 import React from 'react';
+import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
+import PizzaForm from './PizzaForm'
 
 export default function Food(){
     return(
+        <BrowserRouter>
         <div>
             <ul>
-                <li>Pizza</li>
-                <li>Burgers</li>
-                <li>Salads</li>
+                <Link to='/form' style={{padding: 20}}>Pizza</Link>
+                <Link style={{padding: 20}}>Burgers</Link>
+                <Link style={{padding: 20}}>Salads</Link>
             </ul>
+
+            <Switch>
+            <Route path='/form' component={PizzaForm}/>
+            </Switch>
             
         </div>
+        </BrowserRouter>
     )
 }

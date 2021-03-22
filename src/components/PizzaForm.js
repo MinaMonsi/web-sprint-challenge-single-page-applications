@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-export default function OrderForm(){
+export default function PizzaOrderForm(){
     const [form, setForm] = useState({
         user: '',
         size: '',
@@ -9,7 +9,12 @@ export default function OrderForm(){
         instructions:'',
     })
 
-    const handleChange = event => { console.log('changing')}
+    const handleChange = event => {
+        const { name, type, value, checked} = event.target;
+        const valueToUse = type === 'checkbox' ? checked : value
+        setForm({...form, [name]: valueToUse})
+    }
+
     return(
         <div className='AppForm'>
             <form>
