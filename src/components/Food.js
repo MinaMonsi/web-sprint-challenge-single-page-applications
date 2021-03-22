@@ -8,8 +8,8 @@ export default function Food(){
         <div>
             <ul>
                 <Link to='/form' style={{padding: 20}}>Pizza</Link>
-                <Link style={{padding: 20}}>Burgers</Link>
-                <Link style={{padding: 20}}>Salads</Link>
+                <Link to='/form'style={{padding: 20}}>Burgers</Link>
+                <Link to='/form'style={{padding: 20}}>Salads</Link>
             </ul>
 
             <Switch>

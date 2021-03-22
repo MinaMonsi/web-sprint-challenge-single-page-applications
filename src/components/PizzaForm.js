@@ -1,22 +1,40 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
+import * as yup from 'yup' 
+import { schema } from "./FormSchema"
 
 export default function PizzaOrderForm(){
-    const [form, setForm] = useState({
-        user: '',
-        size: '',
-        sauce: '',
-        topping:'',
-        instructions:'',
-    })
+    const [form, setForm] = useState({user: '', size: '', sauce: '', topping: '',
+        instructions:'',})
+    const [errors, setErrors] = useState({user: '', size: '', sauce: '', topping:'',
+        instructions:'',})
+    const [disabled, setDisabled] = useState(true)
+
+    const setFormErrors = (name, value) => {
+        yup.reach(schema, name).validate(value)
+        .then(()=> setErrors({...errors, [name]: ''}))
+        .catch(err=> setErrors({...errors, [name]: err.errors[0]}))
+    }
 
     const handleChange = event => {
-        const { name, type, value, checked} = event.target;
+        const { name, value, type, checked} = event.target;
         const valueToUse = type === 'checkbox' ? checked : value
+        setFormErrors(name, valueToUse)
         setForm({...form, [name]: valueToUse})
     }
 
+    useEffect(()=> {
+        schema.isValid(form).then(valid => setDisabled(!valid))
+    }, [form])
+
     return(
         <div className='AppForm'>
+            <div style={{color: 'red'}}>
+                <div>{errors.user}</div>
+                <div>{errors.size}</div>
+                <div>{errors.sauce}</div>
+                <div>{errors.topping}</div>
+                <div>{errors.instructions}</div>
+            </div>
             <form>
                 <div className="dropMenu">
                     <h4>Pizza Size</h4>
@@ -42,22 +60,22 @@ export default function PizzaOrderForm(){
                 <div className="checkBox">
                     <h4>Toppings</h4>
                     <label htmlFor="toppings">Cheese</label>
-                    <input type="checkbox" checked={form.topping === 'cheese'} name="cheese" onChange={handleChange}/>
+                    <input type="checkbox" checked={form.cheese} name="cheese" onChange={handleChange}/>
                     <br/>
 
                     <label htmlFor="toppings">Pepperoni</label>
-                    <input type="checkbox" checked={form.topping === 'pepperoni'} name="pepperoni" onChange={handleChange}/><br/>
+                    <input type="checkbox" checked={form.pepperoni} name="pepperoni" onChange={handleChange}/><br/>
 
                     <label htmlFor="toppings">Sausage</label>
-                    <input type="checkbox" checked={form.topping === 'sausage'}  name="cheese" onChange={handleChange}/>
+                    <input type="checkbox" checked={form.sausage}  name="cheese" onChange={handleChange}/>
                     <br/>
 
                     <label htmlFor="toppings">Mushroom</label>
-                    <input type="checkbox" checked={form.topping === 'mushroom'}  name="mushroom" onChange={handleChange}/>
+                    <input type="checkbox" checked={form.mushroom}  name="mushroom" onChange={handleChange}/>
                     <br/>
 
                     <label htmlFor="toppings">Pineapple</label>
-                    <input type="checkbox" checked={form.topping === 'pineapple'}  name="pineapple" onChange={handleChange}/>
+                    <input type="checkbox" checked={form.pineapple}  name="pineapple" onChange={handleChange}/>
                 </div>
 
                 <div className="textField">
@@ -81,7 +99,8 @@ export default function PizzaOrderForm(){
                 </div>
 
                 <h4>Please double check your order before submitting.</h4>
-                <input type="submit"/>
+
+                <button disabled={disabled}>Submit</button>
                 
             </form>
         </div>

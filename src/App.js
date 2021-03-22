@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Link, Switch} from 'react-router-dom';
 import Home from './components/Home'
 import Food from './components/Food'
 import Drinks from './components/Drinks'
-import PizzaForm from './components/PizzaForm'
 
 const App = () => {
   return (
