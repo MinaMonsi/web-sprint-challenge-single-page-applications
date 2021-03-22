@@ -91,7 +91,7 @@ export default function PizzaOrderForm(){
                     <h4>Name</h4>
                     <label htmlFor="name"></label>
                     <input value={form.user} 
-                    placeholder="Name"
+                    placeholder="name"
                     name="user" 
                     type="text" 
                     onChange={handleChange}/>
